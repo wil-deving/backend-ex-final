@@ -16,4 +16,14 @@ public class TesterServiceMysql implements TesterService {
         return testerRepository.save(tester);
     }
 
+    @Override
+    public Iterable<Tester> getTestList() {
+        return testerRepository.getTestList();
+    }
+
+    @Override
+    public Iterable<Tester> getTestListById(String idTest) {
+        return testerRepository.getTestListById(idTest);
+    }
+
 }

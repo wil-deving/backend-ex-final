@@ -1,12 +1,14 @@
 package com.demoprogra.progratres.controller;
 
 
-import com.demoprogra.progratres.data.dto.EntityResponseDto;
+import com.demoprogra.progratres.data.dto.Tester.TesterDto;
+import com.demoprogra.progratres.data.dto.Tester.TesterResponseDto;
 import com.demoprogra.progratres.data.entity.Tester;
-import com.demoprogra.progratres.service.EntityService;
 import com.demoprogra.progratres.service.TesterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("v1/health")
@@ -21,19 +23,33 @@ public class HealthController {
     }
 
     @GetMapping("/response-json")
-    public EntityResponseDto getTest() {
-        EntityResponseDto entityResponseDto = new EntityResponseDto();
-        entityResponseDto.setId("ABC");
-        entityResponseDto.setName("my name");
-        return entityResponseDto;
+    public TesterResponseDto getTest() {
+        TesterResponseDto testerResponseDto = new TesterResponseDto();
+        testerResponseDto.setIdColumnOne("ID-Test");
+        testerResponseDto.setColumnTwo("nameTest");
+        return testerResponseDto;
+    }
+
+    @GetMapping("/response-json-list")
+    public Iterable<Tester> getListTester() {
+        ArrayList<TesterResponseDto> testerResponse = new ArrayList<>();
+        TesterResponseDto testerResponseDto = new TesterResponseDto();
+        return testerService.getTestList();
+    }
+
+    @GetMapping("/response-json-list-by-id/{idTest}")
+    public Iterable<Tester> getListTesterById(@PathVariable String idTest) {
+        ArrayList<TesterResponseDto> testerResponse = new ArrayList<>();
+        TesterResponseDto testerResponseDto = new TesterResponseDto();
+        return testerService.getTestListById(idTest);
     }
 
     @PostMapping()
     public @ResponseBody
-    Tester saveTester() {
+    Tester saveTester(@RequestBody TesterDto testerDto) {
         Tester tester = new Tester();
-        tester.setIdColumnOne("Test-1");
-        tester.setColumnTwo("Hello DB!!");
+        tester.setIdColumnOne(testerDto.getId());
+        tester.setColumnTwo(testerDto.getColTwo());
         return testerService.save(tester);
     }
 

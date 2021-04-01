@@ -6,4 +6,8 @@ public interface TesterService {
 
     Tester save(Tester tester);
 
+    Iterable<Tester> getTestList();
+
+    Iterable<Tester> getTestListById(String idTest);
+
 }
