@@ -7,16 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface TesterRepository extends CrudRepository<Tester, Integer> {
 
-    /*
-    @Query(
-            value = "SELECT id_column_one, column_two FROM testing",
-            nativeQuery = true
-    )
-    public Iterable<Tester> getTestList();
-    */
-
-
-
     @Query(
             value = " SELECT tr.id_column_one, tt.column_two, tr.tester_column " +
             " FROM tester tr " +
