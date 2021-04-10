@@ -1,7 +1,9 @@
 package com.demoprogra.progratres.service.Costumer;
 
 import com.demoprogra.progratres.data.entity.Costumer;
+import com.demoprogra.progratres.data.entity.People;
 import com.demoprogra.progratres.repository.CostumerRepository;
+import com.demoprogra.progratres.repository.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,14 @@ public class CostumerServiceMysql implements CostumerService {
     @Autowired
     private CostumerRepository costumerRepository;
 
+    @Autowired
+    private PeopleRepository peopleRepository;
+
+    @Override
+    public People savePeople(People people) {
+        return peopleRepository.save(people);
+    }
+
     @Override
     public Costumer save(Costumer costumer) {
         return costumerRepository.save(costumer);
@@ -25,7 +35,7 @@ public class CostumerServiceMysql implements CostumerService {
     }
 
     @Override
-    public Costumer findByIdCostumer(String idCostumer) {
+    public Map<String, String> findByIdCostumer(String idCostumer) {
         return costumerRepository.findByIdCostumer(idCostumer);
     }
 

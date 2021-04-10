@@ -32,4 +32,14 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
     )
     public Product findByIdProduct(@Param("idProduct") String idProduct);
 
+    @Query(
+            value = " SELECT DISTINCT p.id_product productId, p.code_folio codeFolio " +
+                    " FROM products p LEFT JOIN offers o ON p.id_product = o.id_product " +
+                    " WHERE p.id_product NOT IN ( " +
+                    " SELECT p.id_product" +
+                    " FROM products p INNER JOIN offers o ON p.id_product = o.id_product  WHERE o.available = 1 ) ",
+            nativeQuery = true
+    )
+    public List<Map<String, String>> getProductListForOffer();
+
 }

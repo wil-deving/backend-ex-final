@@ -18,4 +18,6 @@ public interface ProductService {
 
     void deleteProduct(Product product);
 
+    List<Map<String, String>> getProductListForOffer();
+
 }

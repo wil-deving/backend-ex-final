@@ -4,6 +4,7 @@ import com.demoprogra.progratres.bo.CostumerBo;
 import com.demoprogra.progratres.data.dto.Costumer.CostumerDto;
 import com.demoprogra.progratres.data.dto.Product.ProductDto;
 import com.demoprogra.progratres.data.entity.Costumer;
+import com.demoprogra.progratres.data.entity.People;
 import com.demoprogra.progratres.data.entity.Product;
 import com.demoprogra.progratres.service.Costumer.CostumerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,19 @@ public class CostumerController {
 
     @PostMapping()
     public @ResponseBody
-    Costumer saveCostumer(@RequestBody CostumerDto costumerDto) {
+    People saveCostumer(@RequestBody CostumerDto costumerDto) {
+        People peopleEntity = costumerBo.preparePeople(costumerDto);
         Costumer costumerEntity = costumerBo.prepareCostumer(costumerDto);
-        return costumerService.save(costumerEntity);
+        Costumer costumerSaved = costumerService.save(costumerEntity);
+        return costumerService.savePeople(peopleEntity);
     }
 
     @PutMapping()
-    public @ResponseBody Costumer updateCostumer(@RequestBody CostumerDto costumerDto) {
+    public @ResponseBody People updateCostumer(@RequestBody CostumerDto costumerDto) {
+        People peopleEntity = costumerBo.preparePeople(costumerDto);
         Costumer costumerEntity = costumerBo.prepareCostumer(costumerDto);
-        return costumerService.save(costumerEntity);
+        Costumer costumerSaved = costumerService.save(costumerEntity);
+        return costumerService.savePeople(peopleEntity);
     }
 
     @GetMapping()
@@ -43,10 +48,9 @@ public class CostumerController {
     }
 
     @GetMapping("/{idCostumer}")
-    public Costumer getListCostumerById(@PathVariable String idCostumer) {
+    public Map<String, String> getListCostumerById(@PathVariable String idCostumer) {
         return costumerService.findByIdCostumer(idCostumer);
     }
-
 
     @DeleteMapping("/{idCostumer}")
     public String deleteCostumer(@PathVariable String idCostumer) {

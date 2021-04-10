@@ -44,4 +44,9 @@ public class ProductServiceMysql implements ProductService {
         productRepository.delete(product);
     }
 
+    @Override
+    public List<Map<String, String>> getProductListForOffer() {
+        return productRepository.getProductListForOffer();
+    }
+
 }

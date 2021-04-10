@@ -11,19 +11,19 @@ import java.util.Map;
 public interface CostumerRepository extends CrudRepository<Costumer, Integer> {
 
     @Query(
-            value = " SELECT costumer_id costumerId, name, apaterno, amaterno, document, exp_document expDocument, " +
-                    " address, phone, cellphone, email " +
-                    " FROM costumers ",
+            value = " SELECT c.costumer_id costumerId, p.name, p.apaterno, p.amaterno, p.document, " +
+                    " p.exp_document expDocument, p.address, p.phone, p.cellphone, p.email " +
+                    " FROM costumers c INNER JOIN people p ON c.people_id = p.people_id ",
             nativeQuery = true
     )
     public List<Map<String, String>> getCostumerList();
 
     @Query(
-            value = " SELECT costumer_id, name, apaterno, amaterno, document, exp_document, " +
-                    " address, phone, cellphone, email " +
-                    " FROM costumers " +
-                    " WHERE costumer_id = :costumerId ",
+            value = " SELECT c.costumer_id costumerId, p.people_id peopleId, p.name, p.apaterno, p.amaterno, p.document, " +
+                    " p.exp_document expDocument, p.address, p.phone, p.cellphone, p.email " +
+                    " FROM costumers c INNER JOIN people p ON c.people_id = p.people_id " +
+                    " WHERE c.costumer_id = :costumerId ",
             nativeQuery = true
     )
-    public Costumer findByIdCostumer(@Param("costumerId") String costumerId);
+    public Map<String, String> findByIdCostumer(@Param("costumerId") String costumerId);
 }

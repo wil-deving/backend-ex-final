@@ -1,6 +1,7 @@
 package com.demoprogra.progratres.service.Costumer;
 
 import com.demoprogra.progratres.data.entity.Costumer;
+import com.demoprogra.progratres.data.entity.People;
 import com.demoprogra.progratres.data.entity.Product;
 import com.demoprogra.progratres.data.entity.ProductType;
 
@@ -9,11 +10,13 @@ import java.util.Map;
 
 public interface CostumerService {
 
+    People savePeople(People people);
+
     Costumer save(Costumer costumer);
 
     List<Map<String, String>> getCostumerList();
 
-    Costumer findByIdCostumer(String idCostumer);
+    Map<String, String> findByIdCostumer(String idCostumer);
 
     void deleteCostumer(Costumer costumer);
 }
