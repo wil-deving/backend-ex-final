@@ -29,5 +29,14 @@ public class OfferServiceMysql implements OfferService {
         return offerRepository.getOfferById(offerId);
     }
 
+    @Override
+    public List<Map<String, String>> getProductsAvailableToOffer() {
+        return offerRepository.getProductsAvailableToOffer();
+    }
+
+    @Override
+    public void disableOffer(String offerId) {
+        offerRepository.disableOffer(offerId);
+    }
 
 }

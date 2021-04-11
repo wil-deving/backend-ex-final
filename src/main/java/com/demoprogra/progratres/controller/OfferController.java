@@ -58,5 +58,4 @@ public class OfferController {
         return offerService.getOfferById(offerId);
     }
 
-
 }

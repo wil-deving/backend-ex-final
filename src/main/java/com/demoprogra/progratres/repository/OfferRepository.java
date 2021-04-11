@@ -2,9 +2,11 @@ package com.demoprogra.progratres.repository;
 
 import com.demoprogra.progratres.data.entity.Offer;
 import com.demoprogra.progratres.data.entity.Product;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -32,5 +34,26 @@ public interface OfferRepository extends CrudRepository<Offer, Integer> {
             nativeQuery = true
     )
     public Offer getOfferById(@Param("offerId") String offerId);
+
+    @Query(
+            value = " SELECT o.offer_id offerId, p.id_product productId, p.code_folio codeFolio, " +
+                    " CONCAT(peo.name, ' ', peo.apaterno, ' ', peo.amaterno) costumerName, " +
+                    " p.price, o.offer_price offerPrice " +
+                    " FROM offers o INNER JOIN products p ON o.id_product = p.id_product " +
+                    " INNER JOIN costumers c ON c.costumer_id = o.costumer_id " +
+                    " INNER JOIN people peo ON peo.people_id = c.people_id " +
+                    " WHERE o.available = 1 ",
+            nativeQuery = true
+    )
+    public List<Map<String, String>> getProductsAvailableToOffer();
+
+    @Modifying
+    @Transactional
+    @Query(
+            value = " UPDATE offers SET available = 0 " +
+                    " WHERE offer_id = :offerId ",
+            nativeQuery = true
+    )
+    public void disableOffer(@Param("offerId") String offerId);
 
 }

@@ -14,4 +14,8 @@ public interface OfferService {
 
     Offer getOfferById(String offerId);
 
+    List<Map<String, String>> getProductsAvailableToOffer();
+
+    void disableOffer(String offerId);
+
 }
