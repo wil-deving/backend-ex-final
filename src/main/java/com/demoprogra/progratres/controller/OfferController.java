@@ -9,6 +9,7 @@ import com.demoprogra.progratres.service.Product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,4 +59,15 @@ public class OfferController {
         return offerService.getOfferById(offerId);
     }
 
+    @GetMapping("/offer-to-app")
+    public @ResponseBody
+    Map<String, Object> getAvailableProductsForApp() {
+        Map<String, Object> response = new HashMap<String, Object>();
+        List<Map<String, String>> dataResponse = offerService.getProductsAvailableToOfferForApp();
+        response.put("correct", true);
+        response.put("message", "request was done successfully");
+        response.put("data", dataResponse);
+        System.out.println("----------------------------------->");
+        return response;
+    }
 }

@@ -55,4 +55,10 @@ public class SaleController {
     List<Map<String, String>> getSalesData() {
         return saleService.getSalesData();
     }
+
+    @GetMapping("/report/{city}")
+    public @ResponseBody
+    List<Map<String, String>> getSalesDataByCity(@PathVariable String city) {
+        return saleService.getSalesDataByCity(city);
+    }
 }

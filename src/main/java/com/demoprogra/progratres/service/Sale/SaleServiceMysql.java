@@ -24,4 +24,10 @@ public class SaleServiceMysql implements SaleService {
         return saleRepository.getSalesData();
     }
 
+    @Override
+    public List<Map<String, String>> getSalesDataByCity(String filterCity) {
+        if (!filterCity.equals("all")) return saleRepository.getSalesDataByCity(filterCity);
+        return saleRepository.getSalesData();
+    }
+
 }

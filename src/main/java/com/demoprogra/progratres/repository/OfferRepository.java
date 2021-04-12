@@ -56,4 +56,14 @@ public interface OfferRepository extends CrudRepository<Offer, Integer> {
     )
     public void disableOffer(@Param("offerId") String offerId);
 
+    @Query(
+            value = " SELECT o.offer_id offerId, p.city, p.address, pt.description, p.surface, " +
+                    " p.builded_surface buildedSurface, o.offer_price offerPrice " +
+                    " FROM offers o INNER JOIN products p ON o.id_product = p.id_product " +
+                    " INNER JOIN product_types pt ON p.id_product_type = pt.id_product_type " +
+                    " WHERE o.available = 1 ",
+            nativeQuery = true
+    )
+    public List<Map<String, String>> getProductsAvailableToOfferForApp();
+
 }

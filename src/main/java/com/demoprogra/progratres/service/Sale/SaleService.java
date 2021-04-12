@@ -10,4 +10,7 @@ public interface SaleService {
     Sale save(Sale sale);
 
     List<Map<String, String>> getSalesData();
+
+    List<Map<String, String>> getSalesDataByCity(String filterCity);
+
 }

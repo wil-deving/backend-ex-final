@@ -18,4 +18,6 @@ public interface OfferService {
 
     void disableOffer(String offerId);
 
+    List<Map<String, String>> getProductsAvailableToOfferForApp();
+
 }

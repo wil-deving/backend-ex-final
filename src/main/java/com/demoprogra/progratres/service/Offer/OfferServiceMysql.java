@@ -39,4 +39,9 @@ public class OfferServiceMysql implements OfferService {
         offerRepository.disableOffer(offerId);
     }
 
+    @Override
+    public List<Map<String, String>> getProductsAvailableToOfferForApp() {
+        return offerRepository.getProductsAvailableToOfferForApp();
+    }
+
 }
