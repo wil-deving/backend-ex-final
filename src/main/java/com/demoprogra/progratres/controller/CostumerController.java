@@ -2,10 +2,8 @@ package com.demoprogra.progratres.controller;
 
 import com.demoprogra.progratres.bo.CostumerBo;
 import com.demoprogra.progratres.data.dto.Costumer.CostumerDto;
-import com.demoprogra.progratres.data.dto.Product.ProductDto;
 import com.demoprogra.progratres.data.entity.Costumer;
 import com.demoprogra.progratres.data.entity.People;
-import com.demoprogra.progratres.data.entity.Product;
 import com.demoprogra.progratres.service.Costumer.CostumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

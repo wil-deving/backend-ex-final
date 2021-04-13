@@ -3,7 +3,6 @@ package com.demoprogra.progratres.bo;
 import com.demoprogra.progratres.data.dto.Costumer.CostumerDto;
 import com.demoprogra.progratres.data.entity.Costumer;
 import com.demoprogra.progratres.data.entity.People;
-import com.demoprogra.progratres.data.entity.Product;
 
 public class CostumerBo {
 
