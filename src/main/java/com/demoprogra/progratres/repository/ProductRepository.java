@@ -1,10 +1,6 @@
 package com.demoprogra.progratres.repository;
 
-import com.demoprogra.progratres.data.dto.Product.ProductResponseDto;
 import com.demoprogra.progratres.data.entity.Product;
-import com.demoprogra.progratres.data.entity.ProductType;
-import com.demoprogra.progratres.data.entity.Tester;
-import org.hibernate.mapping.Any;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -18,14 +14,15 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
             value = " SELECT p.id_product idProduct, p.city, p.address, pt.description, p.code_folio codeFolio, " +
                     " p.price, p.surface, p.builded_surface buildedSurface " +
                     " FROM products p " +
-                    " INNER JOIN product_types pt ON p.id_product_type = pt.id_product_type ",
+                    " INNER JOIN product_types pt ON p.id_product_type = pt.id_product_type " +
+                    " ORDER BY p.created_at DESC ",
             nativeQuery = true
     )
     public List<Map<String, String>> getProductList();
 
     @Query(
             value = " SELECT id_product, id_product_type, city, address, code_folio, code_catastro, price, surface, " +
-                    " builded_surface " +
+                    " builded_surface, created_at " +
                     " FROM products " +
                     " WHERE id_product = :idProduct ",
             nativeQuery = true
@@ -37,7 +34,8 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
                     " FROM products p LEFT JOIN offers o ON p.id_product = o.id_product " +
                     " WHERE p.id_product NOT IN ( " +
                     " SELECT p.id_product" +
-                    " FROM products p INNER JOIN offers o ON p.id_product = o.id_product  WHERE o.available = 1 ) ",
+                    " FROM products p INNER JOIN offers o ON p.id_product = o.id_product  WHERE o.available = 1 ) " +
+                    " ORDER BY p.created_at DESC ",
             nativeQuery = true
     )
     public List<Map<String, String>> getProductListForOffer();

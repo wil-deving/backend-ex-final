@@ -11,6 +11,9 @@ import com.demoprogra.progratres.service.Interested.InterestedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("v1/inquiry")
 public class InquiryController {
@@ -40,6 +43,12 @@ public class InquiryController {
         People peopleSaved = costumerService.savePeople(peopleEntity);
         Interested interestedSaved = interestedService.save(interestedEntity);
         return inquirySaved;
+    }
+
+    @GetMapping("/report/{city}")
+    public @ResponseBody
+    List<Map<String, String>> getInquiriesByCity(@PathVariable String city) {
+        return inquiryService.getInquiriesDataByCity(city);
     }
 
 }

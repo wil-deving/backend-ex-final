@@ -1,7 +1,6 @@
 package com.demoprogra.progratres.repository;
 
 import com.demoprogra.progratres.data.entity.Offer;
-import com.demoprogra.progratres.data.entity.Product;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -21,7 +20,8 @@ public interface OfferRepository extends CrudRepository<Offer, Integer> {
                     " FROM products p INNER JOIN product_types pt ON p.id_product_type = pt.id_product_type " +
                     " INNER JOIN offers o ON p.id_product = o.id_product " +
                     " INNER JOIN costumers c ON c.costumer_id = o.costumer_id " +
-                    " INNER JOIN people peo ON c.people_id = peo.people_id ",
+                    " INNER JOIN people peo ON c.people_id = peo.people_id " +
+                    " ORDER BY o.created_at DESC ",
             nativeQuery = true
     )
     public List<Map<String, String>> getAllProductListForOffer();
@@ -42,7 +42,8 @@ public interface OfferRepository extends CrudRepository<Offer, Integer> {
                     " FROM offers o INNER JOIN products p ON o.id_product = p.id_product " +
                     " INNER JOIN costumers c ON c.costumer_id = o.costumer_id " +
                     " INNER JOIN people peo ON peo.people_id = c.people_id " +
-                    " WHERE o.available = 1 ",
+                    " WHERE o.available = 1 " +
+                    " ORDER BY o.created_at DESC ",
             nativeQuery = true
     )
     public List<Map<String, String>> getProductsAvailableToOffer();
@@ -61,7 +62,9 @@ public interface OfferRepository extends CrudRepository<Offer, Integer> {
                     " p.builded_surface buildedSurface, o.offer_price offerPrice " +
                     " FROM offers o INNER JOIN products p ON o.id_product = p.id_product " +
                     " INNER JOIN product_types pt ON p.id_product_type = pt.id_product_type " +
-                    " WHERE o.available = 1 ",
+                    " INNER JOIN costumers c ON c.costumer_id = o.costumer_id " +
+                    " WHERE o.available = 1 " +
+                    " ORDER BY o.created_at DESC ",
             nativeQuery = true
     )
     public List<Map<String, String>> getProductsAvailableToOfferForApp();

@@ -13,7 +13,8 @@ public interface CostumerRepository extends CrudRepository<Costumer, Integer> {
     @Query(
             value = " SELECT c.costumer_id costumerId, p.name, p.apaterno, p.amaterno, p.document, " +
                     " p.exp_document expDocument, p.address, p.phone, p.cellphone, p.email " +
-                    " FROM costumers c INNER JOIN people p ON c.people_id = p.people_id ",
+                    " FROM costumers c INNER JOIN people p ON c.people_id = p.people_id " +
+                    " ORDER BY c.created_at DESC ",
             nativeQuery = true
     )
     public List<Map<String, String>> getCostumerList();

@@ -1,6 +1,7 @@
 package com.demoprogra.progratres.data.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "products")
@@ -25,6 +26,8 @@ public class Product {
 
     private Double buildedSurface;
 
+    private Date createdAt;
+
     public Product() {
     }
 
@@ -36,7 +39,8 @@ public class Product {
                    String codeCatastro,
                    Double price,
                    Double surface,
-                   Double buildedSurface) {
+                   Double buildedSurface,
+                   Date createdAt) {
         this.idProduct = idProduct;
         this.idProductType = idProductType;
         this.city = city;
@@ -46,6 +50,7 @@ public class Product {
         this.price = price;
         this.surface = surface;
         this.buildedSurface = buildedSurface;
+        this.createdAt = createdAt;
     }
 
     @Column(name = "id_product")
@@ -116,12 +121,21 @@ public class Product {
         this.surface = surface;
     }
 
-    @Column(name = "builded_surface ")
+    @Column(name = "builded_surface")
     public Double getBuildedSurface() {
         return buildedSurface;
     }
 
     public void setBuildedSurface(Double buildedSurface) {
         this.buildedSurface = buildedSurface;
+    }
+
+    @Column(name = "created_at")
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

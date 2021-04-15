@@ -4,6 +4,8 @@ import com.demoprogra.progratres.data.dto.Costumer.CostumerDto;
 import com.demoprogra.progratres.data.entity.Costumer;
 import com.demoprogra.progratres.data.entity.People;
 
+import java.util.Date;
+
 public class CostumerBo {
 
     public People preparePeople(CostumerDto costumerDto) {
@@ -25,6 +27,7 @@ public class CostumerBo {
         Costumer costumerToSave = new Costumer();
         costumerToSave.setCostumerId(costumerDto.getCostumerId());
         costumerToSave.setPeopleId(costumerDto.getPeopleId());
+        costumerToSave.setCreatedAt(new Date());
         return costumerToSave;
     }
 

@@ -23,7 +23,8 @@ public interface SaleRepository extends CrudRepository<Sale, Integer> {
                     " INNER JOIN product_types pt ON pt.id_product_type = p.id_product_type " +
                     " INNER JOIN users u ON u.user_id = s.user_id " +
                     " INNER JOIN people AS peo1 ON peo1.people_id = u.people_id " +
-                    " INNER JOIN people AS peo2 ON peo2.people_id = c.people_id ",
+                    " INNER JOIN people AS peo2 ON peo2.people_id = c.people_id " +
+                    " ORDER BY s.created_at DESC ",
             nativeQuery = true
     )
     public List<Map<String, String>> getSalesData();
@@ -41,7 +42,8 @@ public interface SaleRepository extends CrudRepository<Sale, Integer> {
                     " INNER JOIN users u ON u.user_id = s.user_id " +
                     " INNER JOIN people AS peo1 ON peo1.people_id = u.people_id " +
                     " INNER JOIN people AS peo2 ON peo2.people_id = c.people_id " +
-                    " WHERE p.city = :filterCity ",
+                    " WHERE p.city = :filterCity " +
+                    " ORDER BY s.created_at DESC ",
             nativeQuery = true
     )
     public List<Map<String, String>> getSalesDataByCity(@Param("filterCity") String filterCity);

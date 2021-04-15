@@ -2,15 +2,12 @@ package com.demoprogra.progratres.controller;
 
 import com.demoprogra.progratres.bo.ProductBo;
 import com.demoprogra.progratres.data.dto.Product.ProductDto;
-import com.demoprogra.progratres.data.dto.Tester.TesterResponseDto;
 import com.demoprogra.progratres.data.entity.Product;
 import com.demoprogra.progratres.data.entity.ProductType;
-import com.demoprogra.progratres.data.entity.Tester;
 import com.demoprogra.progratres.service.Product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

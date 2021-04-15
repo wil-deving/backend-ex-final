@@ -67,7 +67,6 @@ public class OfferController {
         response.put("correct", true);
         response.put("message", "request was done successfully");
         response.put("data", dataResponse);
-        System.out.println("----------------------------------->");
         return response;
     }
 }

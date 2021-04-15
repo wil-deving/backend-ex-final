@@ -9,6 +9,7 @@ import com.demoprogra.progratres.service.Product.ProductServiceMysql;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,7 @@ public class ProductBo {
         productToSave.setPrice(productDto.getPrice());
         productToSave.setSurface(productDto.getSurface());
         productToSave.setBuildedSurface(productDto.getBuildedSurface());
+        productToSave.setCreatedAt(new Date());
         return productToSave;
     }
 

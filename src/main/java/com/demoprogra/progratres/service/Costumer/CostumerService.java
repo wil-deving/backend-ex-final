@@ -2,8 +2,6 @@ package com.demoprogra.progratres.service.Costumer;
 
 import com.demoprogra.progratres.data.entity.Costumer;
 import com.demoprogra.progratres.data.entity.People;
-import com.demoprogra.progratres.data.entity.Product;
-import com.demoprogra.progratres.data.entity.ProductType;
 
 import java.util.List;
 import java.util.Map;
