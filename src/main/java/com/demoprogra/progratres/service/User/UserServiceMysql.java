@@ -17,4 +17,9 @@ public class UserServiceMysql implements UserService {
     public List<Map<String, String>> getAgentList() {
         return userRepository.getAgentList();
     }
+
+    @Override
+    public Map<String, String> getUserAuth(String user, String pass) {
+        return userRepository.getUserAuth(user, pass);
+    }
 }
